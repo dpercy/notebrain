@@ -1,4 +1,5 @@
 
+import re
 import uuid
 
 from flask_mongoengine import Document
@@ -28,3 +29,10 @@ class Note(Document):
         # This makes it easier to distinguish unsaved Notes.
         if self.id is None:
             self.id = uuid.uuid4()
+
+    def text(self):
+        # TODO use a library / do this correctly!
+        return re.sub('<[^>]*>', '', self.html)
+
+    def short_text(self, length=40):
+        return self.text()[:length]

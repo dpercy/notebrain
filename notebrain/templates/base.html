@@ -10,9 +10,15 @@
     <div class="whoami">
       % if g.user:
         <a href="${url_for('auth.logout')}">Log out</a>
-        ${g.user.fullname} &lt;${g.user.email}&gt;
+	${g.user.fullname} &lt;${g.user.email}&gt;
       % else:
         <a href="${url_for('auth.login')}">Log in</a>
+      % endif
+    </div>
+    <div class="links">
+      <a href="${url_for('homepage')}">Home</a>
+      % if g.user:
+        <a href="${url_for('user_notes')}">Notes</a>
       % endif
     </div>
 

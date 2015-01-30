@@ -1,0 +1,17 @@
+<%inherit file="base.html"/>
+
+<%block name="title">
+  ${g.user.fullname}'s notes
+</%block>
+
+<h2>${g.user.fullname}'s notes</h2>
+
+<a href="${url_for('note_view', id=None)}">New</a>
+
+<ul>
+  % for note in notes:
+    <li>
+      <a href="${url_for('note_view', id=note.id)}">${note.short_text()}</a>
+    </li>
+  % endfor
+</ul>

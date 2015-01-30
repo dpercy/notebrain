@@ -32,6 +32,10 @@ def note_view(id=None):
 @app.route('/save_note', methods=['POST'])
 def note_save():
     if request.form['id']:
+        # TODO encapsulate permissions checking in a proxy class
+        #      or special QuerySet manager thingy
+        #      maybe even have Note.objects be the smart one,
+        #      and have Note.objects_bypass_permissions be the normal one.
         note = Note.objects.get_or_404(
             owner = g.user,
             id = request.form['id'],
@@ -41,4 +45,14 @@ def note_save():
 
     note.html = request.form['html']
     note.save()
-    return redirect(url_for('note_view', id=n.id))
+    return redirect(url_for('note_view', id=note.id))
+
+@app.route('/notes')
+def user_notes():
+    return render_template(
+        'list_notes.html',
+        # TODO sorting and pagination
+        notes = Note.objects.filter(
+            owner = g.user,
+        ),
+    )
