@@ -10,6 +10,9 @@
       hiddenSaveForm.html.value = noteBody.innerHTML
       hiddenSaveForm.submit();
     }
+    document.body.onload = function() {
+      noteBody.focus();
+    }
   </script>
 </%block>
 
@@ -17,10 +20,16 @@
 
 
 
-<div id="noteBody" contentEditable>${note.html}</div>
-<button onclick="saveNote()">
-  Save
-</button>
+<div class="toolbar">
+  <button onclick="saveNote()" tabindex="2">
+    Save
+  </button>
+</div>
+<div id="noteBody"
+     contentEditable="true"
+     style=" min-height: 2em; "
+     tabindex="1"
+     >${note.html}</div>
 
 <form name="hiddenSaveForm"
       style=" display: none; "

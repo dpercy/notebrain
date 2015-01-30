@@ -28,4 +28,3 @@ class Note(Document):
         # This makes it easier to distinguish unsaved Notes.
         if self.id is None:
             self.id = uuid.uuid4()
-
