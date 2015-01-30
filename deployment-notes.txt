@@ -7,7 +7,7 @@
     - standalone cannot be backed up; you need oplog
   - turn on backups
 - install packages
-  - apt-get update ; apt-get install libapache2-mod-wsgi python-dev git python-pip python-virtualenv
+  - apt-get update ; apt-get install apache2 libapache2-mod-wsgi python-dev git python-pip python-virtualenv
 - create the notebrain user with a home dir
 - as notebrain, clone the git repo
 - add the post-receive hook to do a git reset --hard
