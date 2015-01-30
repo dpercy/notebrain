@@ -3,17 +3,11 @@ from mongoengine import Document, StringField
 
 
 class User(Document):
-    openid = StringField(required=True)  # identity url
+    openid = StringField(required=True, unique=True)  # identity url
     fullname = StringField()
     nickname = StringField()
     image_url = StringField()
     email = StringField()
-
-    meta = {
-        'indexes': [
-            'openid',
-        ]
-    }
 
     @classmethod
     def get_or_create(cls, openid, fullname, nickname, image_url, email):
