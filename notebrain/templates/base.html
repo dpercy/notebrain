@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>
+      <%block name="title"/> - Notebrain
+    </title>
+  </head>
+  <body>
+    % if g.user:
+      <a href="${url_for('auth.logout')}">Log out</a>
+      <table>
+        <tr><td>full name</td><td>${g.user.fullname}</td></tr>
+        <tr><td>email</td><td>${g.user.email}</td></tr>
+      </table>
+    % else:
+      <a href="${url_for('auth.login')}">Log in</a>
+    % endif
+
+    ${self.body()}
+  </body>
+</html>

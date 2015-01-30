@@ -1,0 +1,5 @@
+*~
+*.pyc
+/venv
+/openid-tmp
+.*.swp

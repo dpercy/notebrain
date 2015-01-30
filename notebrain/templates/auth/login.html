@@ -1,0 +1,30 @@
+<%inherit file="base.html"/>
+
+<%block name="title">
+  Sign in
+</%block>
+
+
+<h2>Sign in with</h2>
+
+% if error:
+  <p class=error>Error: ${error}</p>
+% endif
+
+% for provider_name, provider_url in providers.iteritems():
+  <form action="" method="POST">
+    <input type="hidden" name="openid_url" value="${provider_url}">
+    <input type="submit" value="${provider_name}">
+    <input type="hidden" name="next" value="${next}">
+  </form>
+% endfor
+
+% if debug:
+  % for user in debug_users:
+    <form action="${url_for('.fake_login')}" method="POST">
+      <input type="hidden" name="user" value="${user.openid}">
+      <input type="submit" value="${user.fullname} - ${user.email}">
+    </form>
+  % endfor
+% endif
+

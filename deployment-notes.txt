@@ -1,0 +1,10 @@
+
+- digital ocean
+  - use ubuntu because MMS doesn't have a debian packge
+- install MMS
+  - automation agent
+  - *1-node replica set* on 27017
+    - standalone cannot be backed up; you need oplog
+  - turn on backups
+- install packages
+  - apt-get update ; apt-get install libapache2-mod-wsgi python-dev
