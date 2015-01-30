@@ -1,5 +1,6 @@
 
-from mongoengine import Document, StringField
+from flask_mongoengine import Document
+from mongoengine import StringField
 
 
 class User(Document):

@@ -1,0 +1,42 @@
+<%inherit file="base.html"/>
+
+<%block name="title">
+  Note ${note.id}
+</%block>
+
+<%block name="scripts">
+  <script>
+    function saveNote() {
+      hiddenSaveForm.html.value = noteBody.innerHTML
+      hiddenSaveForm.submit();
+    }
+  </script>
+</%block>
+
+<h2>Note ${note.id or '(new)'}</h2>
+
+
+
+<div id="noteBody" contentEditable>${note.html}</div>
+<button onclick="saveNote()">
+  Save
+</button>
+
+<form name="hiddenSaveForm"
+      style=" display: none; "
+      method="POST"
+      action="${url_for('note_save')}"
+      >
+  <input type="hidden" name="id" value="${note.id or ''}">
+  <input type="hidden" name="html">
+</form>
+
+<!--
+    if id is none, we should POST to /notes
+    if id is a uuid, we should PUT to /notes/<id>
+    either way, the response should be:
+    { // i am a note
+        id: <id>,
+    }
+    and we should update things like the title bar to reflect that...
+  -->
