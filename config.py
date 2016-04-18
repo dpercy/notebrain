@@ -15,3 +15,4 @@ class DevelopmentConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     pass
+
